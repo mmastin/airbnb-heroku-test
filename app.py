@@ -1,10 +1,12 @@
 import numpy as np
 from flask import Flask, jsonify, request
 import pickle
-import sklearn
+from joblib import load
+from sklearn.tree import DecisionTreeClassifier
+import sklearn.pipeline
 
 # model
-my_model = pickle.load(open('tuesday_model_6.pkl','rb'))
+my_model = load('pipeline2.joblib')
 
 app = Flask(__name__)
 
