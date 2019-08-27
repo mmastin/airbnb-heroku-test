@@ -1,9 +1,10 @@
 import numpy as np
 from flask import Flask, jsonify, request
 import pickle
+import joblib
 
 # model
-my_model = load('model/pipeline2.joblib')
+my_model = load('pipeline2.joblib')
 
 app = Flask(__name__)
 
@@ -38,4 +39,4 @@ def make_predict():
 
 
 if __name__ == '__main__':
-    app.run(port = 6000, debug=True)
+    app.run_server(debug=True)
