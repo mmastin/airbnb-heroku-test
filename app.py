@@ -4,7 +4,7 @@ import pickle
 import joblib
 
 # model
-my_model = load('pipeline2.joblib')
+my_model = pickle.load(open('tuesday_model_6.pkl','rb'))
 
 app = Flask(__name__)
 
