@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request
 import pickle
 
 # model
-my_model = load('model/pipeline2.joblib')
+my_model = load('pipeline2.joblib')
 
 app = Flask(__name__)
 
