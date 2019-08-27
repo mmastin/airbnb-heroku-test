@@ -6,7 +6,7 @@ import joblib
 # model
 my_model = pickle.load(open('tuesday_model_6.pkl','rb'))
 
-app = Flask(__name__)
+app = application = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 
@@ -39,4 +39,4 @@ def make_predict():
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run()
