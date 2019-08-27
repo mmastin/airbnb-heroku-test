@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, jsonify, request
 import pickle
+import joblib
 
 # model
 my_model = load('pipeline2.joblib')
