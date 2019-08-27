@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, jsonify, request
 import pickle
+import sklearn
 
 # model
 my_model = pickle.load(open('tuesday_model_6.pkl','rb'))
@@ -38,4 +39,4 @@ def make_predict():
 
 
 if __name__ == '__main__':
-    app.run(port = 6000, debug=True)
+    app.run_server(debug=True)
