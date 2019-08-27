@@ -1,12 +1,11 @@
 import numpy as np
 from flask import Flask, jsonify, request
 import pickle
-import joblib
 
 # model
 my_model = pickle.load(open('tuesday_model_6.pkl','rb'))
 
-app = application = Flask(__name__)
+app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 
@@ -39,4 +38,4 @@ def make_predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port = 6000, debug=True)
