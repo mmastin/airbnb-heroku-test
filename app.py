@@ -1,16 +1,18 @@
 import numpy as np
+import pandas as pd
 from flask import Flask, jsonify, request
 import pickle
 from joblib import load
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestRegressor
 import sklearn.pipeline
 
 # model
-my_model = load('pipeline2.joblib')
+model = pickle.load(open('wednesday_model_1_random_forest.pkl', 'rb))
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 
 def make_predict():
     #get data
@@ -21,7 +23,6 @@ def make_predict():
                        data['room_type'],
                        data['accommodates'],
                        data['bedrooms'],
-                       data['bathrooms'],
                        data['number_of_reviews'],
                        data['wifi'],
                        data['cable_tv'],
@@ -29,10 +30,10 @@ def make_predict():
                        data['kitchen']]
 
 
-    predict_request = np.array(predict_request).reshape(1,-1)
-
-    #preds
-    y_hat = my_model.predict(predict_request)
+    data.update((x, [y]) for x, y in data.items())
+    data_df = pd.DataFrame.from_dict(data)
+                            
+    y_hat = model.predict(data_df)
 
     # send back to browser
     output = {'y_hat': int(y_hat[0])}
@@ -41,4 +42,4 @@ def make_predict():
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(port = 9000, debug=True)
